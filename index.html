@@ -5,22 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Schema</title>
+    <link rel="icon" href="./img/Schema-logo.png" />
     <link rel="stylesheet" href="./assets/resets.css" />
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
-    <main class="wrapper">
-      <section>
+    <header>
+      <div class="title">
+        <h1>Weather in Color</h1>
+        <div class="logo"></div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      <p>Finding your perfect palette for any place</p>
+      <section class="glass">
         <div class="palette">
           <div class="temp">-- --°F</div>
         </div>
       </section>
 
-      <section>
+      <section class="bubbles">
         <div class="bubble" id="icon">icon</div>
-        <div class="bubble" id="humidity">%</div>
-        <div class="bubble" id="speed">mph</div>
+        <div class="bubble" id="humidity">-- %</div>
+        <div class="bubble" id="speed">-- mph</div>
       </section>
-    </main>
+    </div>
+
+    <footer></footer>
   </body>
 </html>
