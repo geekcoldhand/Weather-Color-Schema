@@ -1,5 +1,3 @@
-# Weather-Color-Schema
+# Weather-Color-Wheel
 
-Adding style to the weather!
-
- https://geekcoldhand.github.io/Weather-Color-Schema/
+https://geekcoldhand.github.io/Weather-Color-Schema/
