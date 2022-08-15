@@ -29,8 +29,9 @@
 
     <div class="container">
       <!-- the search box for the city name -->
-      <div class="card search-box d-flex justify-content-center">
+      <div class="card search-box d-flex justify-content-center pb-4">
         <div class="city mb-3 mt-4">City</div>
+        <!-- search bar -->
         <div class="search mb-4">
           <input type="text" name="city" id="city-name" placeholder="City" />
           <button id="search-button">
@@ -52,11 +53,12 @@
             </svg>
           </button>
         </div>
+        <div class="city-box d-flex">Atlanta</div>
       </div>
       <!-- current weather -->
-      <main class="current card m-5 d-flex">
+      <main class="current card m-5 pb-4 d-flex">
         <!-- date -->
-        <div class="date">Thurday 3/3210</div>
+        <div class="date"></div>
 
         <div class="d-flex m-1">
           <!-- Temperature -->
@@ -70,13 +72,17 @@
         <!-- Wind Speed -->
         <div class="speed">--mph</div>
         <!-- UV-Index -->
-        <div class="uv-index">
-          <div class="my-auto">UV</div>
+
+        <div class="uv-index d-flex justify-content-center align-items-center">
+          <div class="uv-score my-auto">UV</div>
         </div>
       </main>
     </div>
 
     <footer></footer>
+
+    <!-- Dayjs -->
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <!-- Bootstrap  -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
