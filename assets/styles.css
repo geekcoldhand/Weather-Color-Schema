@@ -52,6 +52,9 @@ header {
 .city-box {
   flex-direction: row;
   width: 80%;
+  gap: 3%;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .current {
@@ -92,4 +95,18 @@ header {
   max-height: 50px;
   text-align: center;
   border-radius: 50%;
+}
+
+.five-day-box {
+  flex-direction: row;
+  gap: 1%;
+}
+.five-day {
+  width: 25%;
+  height: 15vh;
+  padding-block: 5%;
+  background-color: #026c80;
+  display: flex;
+  gap: 2%;
+  justify-content: center;
 }

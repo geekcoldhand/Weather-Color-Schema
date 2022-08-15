@@ -10,6 +10,16 @@ const cityInput = $("#city-name");
 const searchCityBtn = $("#search-button");
 const currDay = $(".date");
 const citiesEl = $(".cities-box");
+const cityBox = $(".city-box");
+//five day weather
+const fiveBox = $(".five-day-box");
+const fiveDay0 = $("#1");
+const fiveDay1 = $("#2");
+const fiveDay2 = $("#3");
+const fiveDay3 = $("#4");
+const fiveDay4 = $("#5");
+const fiveArray = [fiveDay0, fiveDay1, fiveDay2, fiveDay3, fiveDay4];
+
 // date variables
 const day = dayjs();
 let weekDay = day.format("dddd");
@@ -34,6 +44,7 @@ let weather = {
       .then((data) => this.displayWeather(data));
   },
 
+  //renders the uv data and calls the display five day forcast
   fetchUV(lat, lon) {
     fetch(
       "https://api.openweathermap.org/data/3.0/onecall?lat=" +
@@ -44,12 +55,13 @@ let weather = {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         uvScoreEl.text(data.current.uvi);
+        weather.displayFiveDay(data);
       });
   },
 
   displayWeather(data) {
-    console.log(data);
     let city = data.name;
     let temp = data.main.temp;
     let icon = data.weather[0].icon;
@@ -57,7 +69,7 @@ let weather = {
     let speed = data.wind.speed;
     let { lat, lon } = data.coord;
     let iconURL = "https://openweathermap.org/img/wn/" + icon + ".png";
-    //weather.fetchUV(lat, lon);
+    weather.fetchUV(lat, lon);
     //render data to the screen
     iconEl.css("background-image", "url(" + iconURL + ")");
     cityEl.text(city);
@@ -73,25 +85,52 @@ let weather = {
 
   saveStorage(newItem) {
     let curr = window.localStorage.getItem("cities").split(",");
-    console.log(typeof curr);
     let array = [];
     // loop current storage and render to cities to array box
-
     for (let i = 0; i < curr.length; i++) {
       array[i] = curr[i];
     }
-
-    console.log(array.push(newItem));
+    array.push(newItem);
     localStorage.setItem("cities", array);
   },
 
   renderStorgae() {
     //return array of current items and append new then save
+    let curr = window.localStorage.getItem("cities").split(",");
+    let cityName = $("<div>");
+    console.log(curr);
+    // loop current storage and render to cities to array box
+    for (let i = 0; i < curr.length; i++) {
+      let cityName = $("<div>");
+      cityName.text(curr[i]);
+      cityBox.prepend(cityName);
+    }
+  },
+  displayFiveDay(data) {
+    // run for 5 days and populate the data to div
+    for (let i = 0; i < 5; i++) {
+      let temp = data.daily[i].temp.day;
+      let icon = data.daily[i].weather[0].icon;
+      let desc = data.daily[i].weather[0].description;
+      let iconURL = "https://openweathermap.org/img/wn/" + icon + ".png";
 
-    citiesEl.prepend(array);
+      console.log(temp, icon, desc);
+      let dayTemp = $("<div>");
+      let dayDesc = $("<div>");
+      let dayIcon = $("<div>");
+
+      dayTemp.append(temp);
+      fiveArray[i].append(dayTemp);
+      dayIcon.css("background-image", "url(" + iconURL + ")");
+      dayIcon.addClass("icon");
+      fiveArray[i].append(dayIcon);
+      dayDesc.append(desc);
+      fiveArray[i].append(dayDesc);
+    }
   },
 };
 
+weather.renderStorgae();
 searchCityBtn.click(weather.searchCity);
 cityInput.keypress(function (e) {
   if (e.key === "Enter") weather.searchCity();
