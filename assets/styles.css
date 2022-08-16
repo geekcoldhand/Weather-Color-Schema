@@ -11,6 +11,10 @@
 body {
   color: var(--text--color);
 }
+.my-dash {
+  gap: 3%;
+  flex-direction: column;
+}
 header {
   background-image: linear-gradient(to right, #cecef8, #ffc293);
   width: 100%;
@@ -26,10 +30,11 @@ header {
 .search-box {
   text-align: center;
   align-items: center;
+  justify-content: center;
 }
 .search {
   border: 0.1rem solid black;
-  padding: 0.7rem;
+  padding: 0.4rem;
   border-radius: 5.9rem;
   width: 90%;
 }
@@ -126,12 +131,14 @@ header {
 .five-day-box {
   flex-direction: row;
   gap: 1%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .five-day {
-  width: 25%;
+  width: 35%;
   height: 35vh;
   padding-block: 5%;
-  padding: 1%;
+  padding-inline: 5%;
   border: 0.1rem solid #a8a1a1;
   text-align: center;
   display: flex;
@@ -150,4 +157,19 @@ header {
 .dateOf {
   font-weight: 600;
   font-size: 0.8rem;
+}
+@media (min-width: 768px) {
+  .my-dash {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .search-box {
+    width: 35%;
+    justify-content: flex-start;
+  }
+  .weather-dashboard {
+    width: 60%;
+  }
 }

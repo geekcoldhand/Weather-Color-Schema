@@ -130,18 +130,23 @@ let weather = {
   },
   displayFiveDay(data) {
     // run for 5 days and populate the data to div
+    console.log(data);
     let days = weather.displayDay(day.day());
 
     for (let i = 0; i < 5; i++) {
       let temp = data.daily[i].temp.day;
       let icon = data.daily[i].weather[0].icon;
       let desc = data.daily[i].weather[0].description;
+      let wind = data.daily[i].wind_speed;
+      let humidity = data.daily[i].humidity;
       let iconURL = "https://openweathermap.org/img/wn/" + icon + ".png";
 
       let dayTemp = $("<div>");
       let dayDesc = $("<div>");
       let dayIcon = $("<div>");
       let dateOf = $("<div>");
+      let dayWind = $("<div>");
+      let dayHumid = $("<div>");
 
       dateOf.append(days[i + 1].$d);
       dateOf.addClass("mb-4");
@@ -150,14 +155,19 @@ let weather = {
       dayTemp.addClass("temp");
       dayTemp.append(temp);
       fiveArray[i].append(dayTemp);
+
       dayIcon.css("background-image", "url(" + iconURL + ")");
       dayIcon.addClass("icon");
       fiveArray[i].append(dayIcon);
-      // desc.addClass("mt-4");
+
       dayDesc.append(desc);
       fiveArray[i].prepend(dayDesc);
       fiveArray[i].prepend(dateOf);
-      //fiveArray[i].prepend(days[i + 1].$d);
+
+      dayWind.append("Wind Speed: " + wind);
+      dayHumid.append("Humidity: " + humidity);
+      fiveArray[i].append(dayWind);
+      fiveArray[i].append(dayHumid);
     }
   },
 

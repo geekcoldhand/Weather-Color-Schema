@@ -27,9 +27,9 @@
       <h1>Weather Wheel <span>☁</span></h1>
     </header>
 
-    <div class="container">
+    <div class="my-dash d-flex container">
       <!-- the search box for the city name -->
-      <div class="card search-box d-flex justify-content-center pb-4">
+      <div class="card search-box d-flex pb-4">
         <div class="city mb-3 mt-4">City</div>
         <!-- search bar -->
         <div class="search mb-4">
@@ -55,40 +55,46 @@
         </div>
         <div class="city-box d-flex"></div>
       </div>
-      <!-- current weather -->
-      <main class="current card m-5 pb-4 d-flex">
-        <!-- date -->
-        <div class="date"></div>
+      <div
+        class="weather-dashboard d-flex row align-items-center justify-content-center"
+      >
+        <!-- current weather -->
+        <main class="current card m-5 pb-4 d-flex">
+          <!-- date -->
+          <div class="date"></div>
 
-        <div class="d-flex m-1">
-          <!-- Temperature -->
-          <div class="temp">-- --°F</div>
-          <!-- Icon -->
-          <div class="icon"></div>
+          <div class="d-flex m-1">
+            <!-- Temperature -->
+            <div class="temp">-- --°F</div>
+            <!-- Icon -->
+            <div class="icon"></div>
+          </div>
+
+          <!-- Humidity -->
+          <div class="humidity">--%</div>
+          <!-- Wind Speed -->
+          <div class="speed">--mph</div>
+          <!-- UV-Index -->
+
+          <div
+            class="uv-index d-flex justify-content-center align-items-center"
+          >
+            <div class="uv-score my-auto">UV</div>
+          </div>
+        </main>
+
+        <div class="five-day-box card d-flex m-2 mb-5">
+          <!-- the first card -->
+          <div class="five-day" id="1"></div>
+          <!-- second day of the weeek -->
+          <div class="five-day" id="2"></div>
+          <!-- third day of the weeek -->
+          <div class="five-day" id="3"></div>
+          <!-- fourth day of the weeek -->
+          <div class="five-day" id="4"></div>
+          <!-- fith day of the weeek -->
+          <div class="five-day" id="5"></div>
         </div>
-
-        <!-- Humidity -->
-        <div class="humidity">--%</div>
-        <!-- Wind Speed -->
-        <div class="speed">--mph</div>
-        <!-- UV-Index -->
-
-        <div class="uv-index d-flex justify-content-center align-items-center">
-          <div class="uv-score my-auto">UV</div>
-        </div>
-      </main>
-
-      <div class="five-day-box card d-flex m-2 mb-5">
-        <!-- the first card -->
-        <div class="five-day" id="1"></div>
-        <!-- second day of the weeek -->
-        <div class="five-day" id="2"></div>
-        <!-- third day of the weeek -->
-        <div class="five-day" id="3"></div>
-        <!-- fourth day of the weeek -->
-        <div class="five-day" id="4"></div>
-        <!-- fith day of the weeek -->
-        <div class="five-day" id="5"></div>
       </div>
     </div>
 
