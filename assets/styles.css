@@ -114,3 +114,9 @@ header {
   justify-content: center;
   align-items: center;
 }
+
+.lastCityNames {
+  background: transparent;
+  padding-inline: 3%;
+  border-radius: 1rem;
+}

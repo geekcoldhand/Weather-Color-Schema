@@ -39,8 +39,8 @@ let weather = {
       "https://api.openweathermap.org/data/2.5/weather?q=" +
         city +
         "&units=imperial&appid=" +
-        this.key
-    ) //fetch url to GET weather data and parse to json
+        "2a4c663f61b11d038fdd8933a0017ea9"
+    )
       .then((res) => res.json())
       //send the data to the display
       .then((data) => this.displayWeather(data));
@@ -101,13 +101,13 @@ let weather = {
 
     // loop current storage and render to cities to array box
     for (let i = 0; i < curr.length; i++) {
-      let cityName = $("<div>");
+      // let cityName = $("<div>");
       lastCities = $("<button>");
       // cityName.text(curr[i]);
       lastCities.text(curr[i]);
-      lastCities.on("click", weather.lastCitySearch);
+      lastCities.addClass("lastCityNames");
       //cityBox.prepend(cityName);
-      cityBox.prepend(lastCities);
+      cityBox.append(lastCities);
     }
   },
   displayFiveDay(data) {
@@ -149,19 +149,16 @@ let weather = {
     }
     return nextFive;
   },
-
-  lastCitySearch(e) {
-    console.log("clciked");
-    if (e) {
-      let cityName = e.value();
-      console.log(cityName);
-      weather.fetchWeather(cityName);
-    }
-  },
 };
-lastCities.click(weather.lastCitySearch());
+
 weather.renderStorgae();
 searchCityBtn.click(weather.searchCity);
 cityInput.keypress(function (e) {
   if (e.key === "Enter") weather.searchCity();
+});
+$(document).ready(function () {
+  cityBox.on("click", "button", function (e) {
+    let newCity = e.target.textContent;
+    weather.fetchWeather(newCity);
+  });
 });
