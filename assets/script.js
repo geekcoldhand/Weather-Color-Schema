@@ -57,11 +57,29 @@ let weather = {
     )
       .then((res) => res.json())
       .then((data) => {
-        uvScoreEl.text(data.current.uvi);
+        //uvScoreEl.text(data.current.uvi);
+        weather.displayUV(data);
         weather.displayFiveDay(data);
       });
   },
 
+  displayUV(data) {
+    let index = data.current.uvi;
+    let intIndex = parseInt(index);
+    uvScoreEl.text(index);
+
+    if (intIndex > 9) {
+      uvIndexEl.addClass("harful-uv");
+    }
+    if (intIndex <= 9 && index > 5) {
+      uvIndexEl.addClass("bad-uv");
+    }
+    if (intIndex <= 5 && index > 2) {
+      uvIndexEl.addClass("fair-uv");
+    } else {
+      uvIndexEl.addClass("good-uv");
+    }
+  },
   displayWeather(data) {
     let city = data.name;
     let temp = data.main.temp;
@@ -107,13 +125,12 @@ let weather = {
       lastCities.text(curr[i]);
       lastCities.addClass("lastCityNames");
       //cityBox.prepend(cityName);
-      cityBox.append(lastCities);
+      cityBox.prepend(lastCities);
     }
   },
   displayFiveDay(data) {
     // run for 5 days and populate the data to div
     let days = weather.displayDay(day.day());
-    console.log(days.$d);
 
     for (let i = 0; i < 5; i++) {
       let temp = data.daily[i].temp.day;
@@ -124,15 +141,23 @@ let weather = {
       let dayTemp = $("<div>");
       let dayDesc = $("<div>");
       let dayIcon = $("<div>");
+      let dateOf = $("<div>");
 
+      dateOf.append(days[i + 1].$d);
+      dateOf.addClass("mb-4");
+      dateOf.addClass("dateOf");
+
+      dayTemp.addClass("temp");
       dayTemp.append(temp);
       fiveArray[i].append(dayTemp);
       dayIcon.css("background-image", "url(" + iconURL + ")");
       dayIcon.addClass("icon");
       fiveArray[i].append(dayIcon);
+      // desc.addClass("mt-4");
       dayDesc.append(desc);
-      fiveArray[i].append(dayDesc);
-      fiveArray[i].prepend(days[i + 1].$d);
+      fiveArray[i].prepend(dayDesc);
+      fiveArray[i].prepend(dateOf);
+      //fiveArray[i].prepend(days[i + 1].$d);
     }
   },
 
