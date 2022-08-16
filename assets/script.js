@@ -11,6 +11,8 @@ const searchCityBtn = $("#search-button");
 const currDay = $(".date");
 const citiesEl = $(".cities-box");
 const cityBox = $(".city-box");
+let lastCities = $("<button>");
+
 //five day weather
 const fiveBox = $(".five-day-box");
 const fiveDay0 = $("#1");
@@ -23,7 +25,7 @@ const fiveArray = [fiveDay0, fiveDay1, fiveDay2, fiveDay3, fiveDay4];
 // date variables
 const day = dayjs();
 let weekDay = day.format("dddd");
-let monthDay = day.month();
+let monthDay = day.format("D");
 let year = day.year();
 let hour = day.hour();
 currDay.text(weekDay + ", " + monthDay + " " + year);
@@ -55,7 +57,6 @@ let weather = {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         uvScoreEl.text(data.current.uvi);
         weather.displayFiveDay(data);
       });
@@ -97,24 +98,29 @@ let weather = {
   renderStorgae() {
     //return array of current items and append new then save
     let curr = window.localStorage.getItem("cities").split(",");
-    let cityName = $("<div>");
-    console.log(curr);
+
     // loop current storage and render to cities to array box
     for (let i = 0; i < curr.length; i++) {
       let cityName = $("<div>");
-      cityName.text(curr[i]);
-      cityBox.prepend(cityName);
+      lastCities = $("<button>");
+      // cityName.text(curr[i]);
+      lastCities.text(curr[i]);
+      lastCities.on("click", weather.lastCitySearch);
+      //cityBox.prepend(cityName);
+      cityBox.prepend(lastCities);
     }
   },
   displayFiveDay(data) {
     // run for 5 days and populate the data to div
+    let days = weather.displayDay(day.day());
+    console.log(days.$d);
+
     for (let i = 0; i < 5; i++) {
       let temp = data.daily[i].temp.day;
       let icon = data.daily[i].weather[0].icon;
       let desc = data.daily[i].weather[0].description;
       let iconURL = "https://openweathermap.org/img/wn/" + icon + ".png";
 
-      console.log(temp, icon, desc);
       let dayTemp = $("<div>");
       let dayDesc = $("<div>");
       let dayIcon = $("<div>");
@@ -126,10 +132,34 @@ let weather = {
       fiveArray[i].append(dayIcon);
       dayDesc.append(desc);
       fiveArray[i].append(dayDesc);
+      fiveArray[i].prepend(days[i + 1].$d);
+    }
+  },
+
+  displayDay(range) {
+    let nextFive = [];
+
+    for (let i = 0; i < 7; i++) {
+      if (range === 6) {
+        nextFive.push(day.day(range + i));
+        range = 0;
+      } else {
+        nextFive.push(day.day(range + i));
+      }
+    }
+    return nextFive;
+  },
+
+  lastCitySearch(e) {
+    console.log("clciked");
+    if (e) {
+      let cityName = e.value();
+      console.log(cityName);
+      weather.fetchWeather(cityName);
     }
   },
 };
-
+lastCities.click(weather.lastCitySearch());
 weather.renderStorgae();
 searchCityBtn.click(weather.searchCity);
 cityInput.keypress(function (e) {

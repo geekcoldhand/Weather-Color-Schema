@@ -103,10 +103,14 @@ header {
 }
 .five-day {
   width: 25%;
-  height: 15vh;
+  height: 35vh;
   padding-block: 5%;
-  background-color: #026c80;
+  padding: 1%;
+  border: 0.1rem solid #a8a1a1;
+
   display: flex;
   gap: 2%;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
