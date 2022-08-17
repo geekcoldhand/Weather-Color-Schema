@@ -1,13 +1,3 @@
-:root {
-  --main--color: #b63d42;
-  --twin--color: #db8b56;
-  --neu--color: #fad02c;
-  --cool--color: #8db4ad;
-  --accent--color: #026c80;
-  --text--color: #064c72;
-  --blend: #49e147;
-}
-
 body {
   color: var(--text--color);
 }
@@ -19,28 +9,33 @@ header {
   background-image: linear-gradient(to right, #cecef8, #ffc293);
   width: 100%;
   height: auto;
-  display: block;
-  padding-bottom: 5%;
+  padding-block: 2%;
   margin-bottom: 3%;
   text-align: center;
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 2.3rem;
+  font-weight: 200;
+  color: #214575;
 }
+
 /* Search box,search input field and button */
 .search-box {
   text-align: center;
   align-items: center;
   justify-content: center;
+  background-color: #f1f1f96c;
 }
 .search {
   border: 0.1rem solid black;
   padding: 0.4rem;
   border-radius: 5.9rem;
   width: 90%;
+  color: #214575;
+  background-color: #f1f1f96c;
 }
 .city {
   font-size: 3rem;
   font-weight: 550;
+  color: #214575;
 }
 #city-name {
   width: 92%;
@@ -48,6 +43,7 @@ header {
   padding: 1%;
   border: none;
   text-align: center;
+  background-color: #f1f1f96c;
 }
 #search-button {
   cursor: pointer;
@@ -66,10 +62,17 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #f1f1f96c;
+  color: #214575;
 }
 .temp {
   font-weight: 500;
   font-size: 2.4rem;
+}
+
+.five-temp {
+  font-weight: 500;
+  font-size: 1.6rem;
 }
 .speed {
   font-weight: 500;
@@ -92,7 +95,7 @@ header {
   border-top: 0.4rem solid red;
   border-bottom: 0.4rem solid #49e147;
   border-left: 0.4rem solid rgb(255, 213, 0);
-  border-right: 0.4rem solid rgb(0, 255, 145);
+  border-right: 0.4rem solid rgb(133, 35, 99);
 
   width: 50px;
   height: 50px;
@@ -101,51 +104,56 @@ header {
   text-align: center;
   border-radius: 50%;
 }
+
 .good-uv {
-  border-top: 0.4rem solid #49e147;
-  border-bottom: 0.4rem solid #49e147;
+  border-top: 0.4rem solid #76c974;
+  border-bottom: 0.4rem solid #569a55;
   border-left: 0.4rem solid #49e147;
   border-right: 0.4rem solid rgb(0, 255, 145);
 }
 
 .fair-uv {
-  border-top: 0.4rem solid #ffd500;
+  border-top: 0.4rem solid #ffd500da;
   border-bottom: 0.4rem solid #ffd500;
   border-left: 0.4rem solid #ffd500;
   border-right: 0.4rem solid #ffd500;
 }
 
 .bad-uv {
-  border-top: 0.4rem solid #ff0000;
+  border-top: 0.4rem solid #b61e1e;
   border-bottom: 0.4rem solid #ff0000;
-  border-left: 0.4rem solid #ff0000;
-  border-right: 0.4rem solid #ff0000;
+  border-left: 0.4rem solid #d87979;
+  border-right: 0.4rem solid #e03030;
 }
 .harmful-uv {
-  border-top: 0.4rem solid #7e5688;
+  border-top: 0.4rem solid #663593;
   border-bottom: 0.4rem solid #7e5688;
-  border-left: 0.4rem solid #7e5688;
-  border-right: 0.4rem solid #7e5688;
+  border-left: 0.4rem solid #8b419e;
+  border-right: 0.4rem solid #35213a;
 }
 
 .five-day-box {
   flex-direction: row;
   gap: 1%;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
+  padding: 1%;
 }
 .five-day {
-  width: 35%;
-  height: 35vh;
+  width: 20%;
+  height: 45vh;
   padding-block: 5%;
-  padding-inline: 5%;
-  border: 0.1rem solid #a8a1a1;
+  padding-inline: 2%;
+  border: none;
+  border-radius: 1rem;
   text-align: center;
   display: flex;
-  gap: 2%;
+
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #f4e5d980;
+  color: #214575;
 }
 
 .lastCityNames {
@@ -158,6 +166,8 @@ header {
   font-weight: 600;
   font-size: 0.8rem;
 }
+
+/* for screen sizes 768 and above */
 @media (min-width: 768px) {
   .my-dash {
     flex-direction: row;
@@ -166,10 +176,16 @@ header {
   }
 
   .search-box {
-    width: 35%;
+    width: 25%;
     justify-content: flex-start;
   }
+  #city-name {
+    width: 78%;
+  }
+  .city {
+    font-size: 2rem;
+  }
   .weather-dashboard {
-    width: 60%;
+    width: 75%;
   }
 }

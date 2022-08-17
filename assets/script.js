@@ -31,8 +31,6 @@ let hour = day.hour();
 currDay.text(weekDay + ", " + monthDay + " " + year);
 
 let weather = {
-  key: "2a4c663f61b11d038fdd8933a0017ea9",
-
   fetchWeather(city) {
     let currWeather;
     fetch(
@@ -57,7 +55,6 @@ let weather = {
     )
       .then((res) => res.json())
       .then((data) => {
-        //uvScoreEl.text(data.current.uvi);
         weather.displayUV(data);
         weather.displayFiveDay(data);
       });
@@ -119,20 +116,23 @@ let weather = {
 
     // loop current storage and render to cities to array box
     for (let i = 0; i < curr.length; i++) {
-      // let cityName = $("<div>");
       lastCities = $("<button>");
-      // cityName.text(curr[i]);
       lastCities.text(curr[i]);
       lastCities.addClass("lastCityNames");
-      //cityBox.prepend(cityName);
       cityBox.prepend(lastCities);
     }
   },
   displayFiveDay(data) {
-    // run for 5 days and populate the data to div
-    console.log(data);
-    let days = weather.displayDay(day.day());
+    //empty current data if any
+    fiveDay0.empty();
+    fiveDay1.empty();
+    fiveDay2.empty();
+    fiveDay3.empty();
+    fiveDay4.empty();
 
+    // run for 5 days and populate the data to div'
+
+    let days = weather.displayDay(day.day());
     for (let i = 0; i < 5; i++) {
       let temp = data.daily[i].temp.day;
       let icon = data.daily[i].weather[0].icon;
@@ -151,21 +151,20 @@ let weather = {
       dateOf.append(days[i + 1].$d);
       dateOf.addClass("mb-4");
       dateOf.addClass("dateOf");
+      dayDesc.append(desc);
+      fiveArray[i].append(dayDesc);
 
-      dayTemp.addClass("temp");
+      dayTemp.addClass("five-temp");
       dayTemp.append(temp);
       fiveArray[i].append(dayTemp);
 
       dayIcon.css("background-image", "url(" + iconURL + ")");
       dayIcon.addClass("icon");
       fiveArray[i].append(dayIcon);
-
-      dayDesc.append(desc);
-      fiveArray[i].prepend(dayDesc);
       fiveArray[i].prepend(dateOf);
 
-      dayWind.append("Wind Speed: " + wind);
-      dayHumid.append("Humidity: " + humidity);
+      dayWind.append("Wind: " + wind + "mph");
+      dayHumid.append("Humidity: " + humidity + "%");
       fiveArray[i].append(dayWind);
       fiveArray[i].append(dayHumid);
     }
@@ -173,7 +172,6 @@ let weather = {
 
   displayDay(range) {
     let nextFive = [];
-
     for (let i = 0; i < 7; i++) {
       if (range === 6) {
         nextFive.push(day.day(range + i));
@@ -191,6 +189,7 @@ searchCityBtn.click(weather.searchCity);
 cityInput.keypress(function (e) {
   if (e.key === "Enter") weather.searchCity();
 });
+
 $(document).ready(function () {
   cityBox.on("click", "button", function (e) {
     let newCity = e.target.textContent;
