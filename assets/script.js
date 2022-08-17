@@ -156,7 +156,7 @@ let weather = {
 
       dayTemp.addClass("five-temp");
       dayTemp.append(temp);
-      fiveArray[i].append(dayTemp);
+      fiveArray[i].prepend(dayTemp);
 
       dayIcon.css("background-image", "url(" + iconURL + ")");
       dayIcon.addClass("icon");
